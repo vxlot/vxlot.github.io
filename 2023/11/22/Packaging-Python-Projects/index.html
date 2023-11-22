@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Wei Xiaolu">
+
+
+
+
+
+<title>Packaging Python Projects | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Weixiaolu&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Weixiaolu&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Packaging Python Projects</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Wei Xiaolu</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 22, 2023&nbsp;&nbsp;9:58:30</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Packaging-Python-Projects"><a href="#Packaging-Python-Projects" class="headerlink" title="Packaging Python Projects"></a>Packaging Python Projects</h1><p>Guide Doc: <a target="_blank" rel="noopener" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">https://packaging.python.org/en/latest/tutorials/packaging-projects/</a></p>
+<h2 id="Preparatory-work"><a href="#Preparatory-work" class="headerlink" title="Preparatory work"></a>Preparatory work</h2><h3 id="Install-essential-packages"><a href="#Install-essential-packages" class="headerlink" title="Install essential packages"></a>Install essential packages</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m pip install --upgrade pip</span><br><span class="line">python3 -m pip install --upgrade build</span><br><span class="line">python3 -m pip install --upgrade twine</span><br></pre></td></tr></table></figure>
+
+<h3 id="Creating-the-package-files"><a href="#Creating-the-package-files" class="headerlink" title="Creating the package files"></a>Creating the package files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">packaging_whatever/</span><br><span class="line">├── LICENSE</span><br><span class="line">├── pyproject.toml</span><br><span class="line">├── README.md</span><br><span class="line">├── src/</span><br><span class="line">│   └── example_package_YOUR_USERNAME_HERE/</span><br><span class="line">│       ├── __init__.py 暂时为空</span><br><span class="line">│       └── example.py  编写函数</span><br><span class="line">└── tests/ 暂时为空</span><br></pre></td></tr></table></figure>
+
+<h3 id="Content-of-pyproject-toml"><a href="#Content-of-pyproject-toml" class="headerlink" title="Content of pyproject.toml"></a>Content of pyproject.toml</h3><p>Don’t forget to change the version number.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[project]</span><br><span class="line">name = <span class="string">&quot;example_package_YOUR_USERNAME_HERE&quot;</span></span><br><span class="line">version = <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line">authors = [</span><br><span class="line">  &#123; name=<span class="string">&quot;Example Author&quot;</span>, email=<span class="string">&quot;author@example.com&quot;</span> &#125;,</span><br><span class="line">]</span><br><span class="line">description = <span class="string">&quot;A small example package&quot;</span></span><br><span class="line">readme = <span class="string">&quot;README.md&quot;</span></span><br><span class="line">requires-python = <span class="string">&quot;&gt;=3.8&quot;</span></span><br><span class="line">classifiers = [</span><br><span class="line">    <span class="string">&quot;Programming Language :: Python :: 3&quot;</span>,</span><br><span class="line">    <span class="string">&quot;License :: OSI Approved :: MIT License&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Operating System :: OS Independent&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">[project.urls]</span><br><span class="line">Homepage = <span class="string">&quot;https://github.com/pypa/sampleproject&quot;</span></span><br><span class="line">Issues = <span class="string">&quot;https://github.com/pypa/sampleproject/issues&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Content-of-LICENSE"><a href="#Content-of-LICENSE" class="headerlink" title="Content of LICENSE"></a>Content of LICENSE</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Copyright (c) 2018 The Python Packaging Authority</span><br><span class="line"></span><br><span class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</span><br><span class="line">of this software and associated documentation files (the &quot;Software&quot;), to deal</span><br><span class="line">in the Software without restriction, including without limitation the rights</span><br><span class="line">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span><br><span class="line">copies of the Software, and to permit persons to whom the Software is</span><br><span class="line">furnished to do so, subject to the following conditions:</span><br><span class="line"></span><br><span class="line">The above copyright notice and this permission notice shall be included in all</span><br><span class="line">copies or substantial portions of the Software.</span><br><span class="line"></span><br><span class="line">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span><br><span class="line">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span><br><span class="line">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span><br><span class="line">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span><br><span class="line">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span><br><span class="line">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span><br><span class="line">SOFTWARE.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Packaging"><a href="#Packaging" class="headerlink" title="Packaging"></a>Packaging</h2><h3 id="Build-dists"><a href="#Build-dists" class="headerlink" title="Build dists"></a>Build dists</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m build</span><br></pre></td></tr></table></figure>
+
+<p>After building, the framework be like:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dist/</span><br><span class="line">├── example_package_YOUR_USERNAME_HERE-0.0.1-py3-none-any.whl</span><br><span class="line">└── example_package_YOUR_USERNAME_HERE-0.0.1.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="Upload-packages"><a href="#Upload-packages" class="headerlink" title="Upload packages"></a>Upload packages</h3><h4 id="create-API-token"><a href="#create-API-token" class="headerlink" title="create API token"></a>create API token</h4><p>To securely upload your project, you’ll need a PyPI <a target="_blank" rel="noopener" href="https://test.pypi.org/help/#apitoken">API token</a>. Create one at <a target="_blank" rel="noopener" href="https://test.pypi.org/manage/account/#api-tokens">https://test.pypi.org/manage/account/#api-tokens</a>, setting the “Scope” to “Entire account”.</p>
+<p>No QR Scanner? Try pyotp. Doc: <a target="_blank" rel="noopener" href="https://pypi.org/project/pyotp/#description">https://pypi.org/project/pyotp/#description</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">! pip install pyotp</span><br><span class="line"></span><br><span class="line">import pyotp</span><br><span class="line">totp = pyotp.TOTP(&quot;STRING BE GIVEN&quot;)</span><br><span class="line">print(&quot;Current OTP:&quot;, totp.now())</span><br></pre></td></tr></table></figure>
+
+<h4 id="Upload"><a href="#Upload" class="headerlink" title="Upload"></a>Upload</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m twine upload --repository testpypi dist/*</span><br></pre></td></tr></table></figure>
+
+<p>Pay attention when you write your username.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter your username: __token__ [just &#x27;__token__&#x27;]</span><br><span class="line">Enter your password: API strings [including the pypi- prefix]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h2 id="Download-and-use-your-package"><a href="#Download-and-use-your-package" class="headerlink" title="Download and use your package"></a>Download and use your package</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> example_package_YOUR_USERNAME_HERE <span class="keyword">import</span> example</span><br><span class="line">example.function_name()</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Wei Xiaolu</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://vxlot.github.io/2023/11/22/Packaging-Python-Projects/">https://vxlot.github.io/2023/11/22/Packaging-Python-Projects/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Pip/"># Pip</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/11/21/hello-world/">Hello World</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Wei Xiaolu | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
