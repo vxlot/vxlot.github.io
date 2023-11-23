@@ -229,7 +229,7 @@
 <p>After building, the framework be like:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dist/</span><br><span class="line">├── example_package_YOUR_USERNAME_HERE-0.0.1-py3-none-any.whl</span><br><span class="line">└── example_package_YOUR_USERNAME_HERE-0.0.1.tar.gz</span><br></pre></td></tr></table></figure>
 
-<h3 id="Upload-packages"><a href="#Upload-packages" class="headerlink" title="Upload packages"></a>Upload packages</h3><h4 id="create-API-token"><a href="#create-API-token" class="headerlink" title="create API token"></a>create API token</h4><p>To securely upload your project, you’ll need a PyPI <a target="_blank" rel="noopener" href="https://test.pypi.org/help/#apitoken">API token</a>. Create one at <a target="_blank" rel="noopener" href="https://test.pypi.org/manage/account/#api-tokens">https://test.pypi.org/manage/account/#api-tokens</a>, setting the “Scope” to “Entire account”.</p>
+<h3 id="Upload-packages"><a href="#Upload-packages" class="headerlink" title="Upload packages"></a>Upload packages</h3><h4 id="create-API-token"><a href="#create-API-token" class="headerlink" title="create API token"></a>create API token</h4><p>To securely upload your project, you’ll need a PyPI <a target="_blank" rel="noopener" href="https://test.pypi.org/help/#apitoken">API token</a>.<br>Create one at <a target="_blank" rel="noopener" href="https://test.pypi.org/manage/account/#api-tokens">https://test.pypi.org/manage/account/#api-tokens</a>.<br>Setting the “Scope” to “Entire account”.</p>
 <p>No QR Scanner? Try pyotp. Doc: <a target="_blank" rel="noopener" href="https://pypi.org/project/pyotp/#description">https://pypi.org/project/pyotp/#description</a></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">! pip install pyotp</span><br><span class="line"></span><br><span class="line">import pyotp</span><br><span class="line">totp = pyotp.TOTP(&quot;STRING BE GIVEN&quot;)</span><br><span class="line">print(&quot;Current OTP:&quot;, totp.now())</span><br></pre></td></tr></table></figure>
 
@@ -295,8 +295,6 @@
             
                 <a class="prev" rel="prev" href="/2023/11/22/Use-Hexo-Github-Build-Your-Own-Blog/">Use Hexo & Github Build Your Own Blog</a>
             
-            
-            <a class="next" rel="next" href="/2023/11/21/hello-world/">Hello World</a>
             
         </section>
 
