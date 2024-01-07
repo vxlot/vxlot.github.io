@@ -13,7 +13,7 @@
 
 
 
-<title>Attention is all you need | Hexo</title>
+<title>What are Diffusion Models? | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Attention is all you need</h1>
+            <h1 class="post-title">What are Diffusion Models?</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">January 4, 2024&nbsp;&nbsp;14:03:09</a>
+                        Date: <a href="#">January 4, 2024&nbsp;&nbsp;16:00:25</a>
                         </span>
                     
                     
@@ -214,23 +214,8 @@
         </header>
 
         <div class="post-content">
-            <blockquote>
-<p>The attention mechanism describes a weighted average of (sequence) elements with the weights dynamically computed based on an input query and elements’ keys</p>
-</blockquote>
-<p>一句话：value的加权和</p>
-<h3 id="What-is-Attention"><a href="#What-is-Attention" class="headerlink" title="What is Attention?"></a>What is Attention?</h3><p>The attention mechanism describes a recent new group of layers in neural networks that has attracted a lot of interest in the past few years, especially in sequence tasks.<br>There are a lot of different possible definitions of “attention” in the literature, but the one we will use here is the following: <em>the attention mechanism describes a weighted average of (sequence) elements with the weights dynamically computed based on an input query and elements’ keys</em>.<br>So what does this exactly mean?<br>The goal is to take an average over the features of multiple elements.<br>However, instead of weighting each element equally, we want to weight them depending on their actual values.<br>In other words, we want to dynamically decide on which inputs we want to “attend” more than others.<br>In particular, an attention mechanism has usually four parts we need to specify:</p>
-<ul>
-<li><strong>Query</strong>: The query is a feature vector that describes what we are looking for in the sequence, i.e. what would we maybe want to pay attention to. 【想要注意的特征向量】</li>
-<li><strong>Keys</strong>: For each input element, we have a key which is again a feature vector. 【每个输入元素的特征向量】<br>This feature vector roughly describes what the element is “offering”, or when it might be important.<br>The keys should be designed such that we can identify the elements we want to pay attention to based on the query.</li>
-<li><strong>Values</strong>: For each input element, we also have a value vector. 【每个输入元素的值向量】<br>This feature vector is the one we want to average over.</li>
-<li><strong>Score function</strong>: To rate which elements we want to pay attention to, we need to specify a score function.<br>The score function takes the query and a key as input, and output the score&#x2F;attention weight of the query-key pair.<br>It is usually implemented by simple similarity metrics like a dot product, or a small MLP.</li>
-</ul>
-<p>The weights of the average are calculated by a softmax over all score function outputs.<br>Hence, we assign those value vectors a higher weight whose corresponding key is most similar to the query.<br>If we try to describe it with pseudo-math, we can write:<br>$$<br>\alpha_i &#x3D; \frac{\exp\left(f_{attn}\left(\text{key}<em>i, \text{query}\right)\right)}{\sum_j \exp\left(f</em>{attn}\left(\text{key}_j, \text{query}\right)\right)}, \hspace{5mm} \text{out} &#x3D; \sum_i \alpha_i \cdot \text{value}_i<br>$$</p>
-<p>Visually, we can show the attention over a sequence of words as follows:</p>
-<center width="100%" style="padding:25px"><img src="https://github.com/Lightning-AI/lightning-tutorials/raw/main/course_UvA-DL/05-transformers-and-MH-attention/attention_example.svg" width="750px"></center>
-
-<p>For every word, we have one key and one value vector.<br>The query is compared to all keys with a score function (in this case the dot product) to determine the weights.<br>The softmax is not visualized for simplicity.<br>Finally, the value vectors of all words are averaged using the attention weights.</p>
-<p>Most attention mechanisms differ in terms of what queries they use, how the key and value vectors are defined,<br>and what score function is used.<br>The attention applied inside the Transformer architecture is called <strong>self-attention</strong>.<br>In self-attention, each sequence element provides a key, value, and query.<br>For each element, we perform an attention layer where based on its query, we check the similarity of the all sequence elements’ keys, and returned a different, averaged value vector for each element.</p>
+            <h2 id="Forward-diffusion-process"><a href="#Forward-diffusion-process" class="headerlink" title="Forward diffusion process"></a>Forward diffusion process</h2><p>前向过程，即在图片上一步步加噪声直到完全变为噪声。</p>
+<p>给定真实图片 $\mathbf{x}<em>0\sim q(\mathbf{x})$, diffusion 前向过程通过 $T$ 次累计对其添加高斯噪声，得到 $x_1,x_2,\ldots,x_T$ ，如下图的 q 过程。这里需要给定一系列的高斯分布方差的超参数 ${\beta_t\in(0,1)}</em>{t&#x3D;1}^T$.<br>$$q(x_t|x_{t-1})&#x3D;\mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t\mathbf{I}),q(x_{1:T}|x_0)&#x3D;\prod_{t&#x3D;1}^Tq(x_t|x_{t-1}).$$</p>
 
         </div>
 
@@ -245,7 +230,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://vxlot.github.io/2024/01/04/Attention-is-all-you-need/">https://vxlot.github.io/2024/01/04/Attention-is-all-you-need/</a></span>
+                        <span><a href="https://vxlot.github.io/2024/01/04/What-are-Diffusion-Models/">https://vxlot.github.io/2024/01/04/What-are-Diffusion-Models/</a></span>
                     </p>
                 
                 
@@ -278,10 +263,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/01/04/What-are-Diffusion-Models/">What are Diffusion Models?</a>
+                <a class="prev" rel="prev" href="/2024/01/07/Python-Leetcode/">Python Leetcode</a>
             
             
-            <a class="next" rel="next" href="/2023/12/19/Download-large-files-from-Google-Drive/">Download large files from Google Drive</a>
+            <a class="next" rel="next" href="/2024/01/04/Attention-is-all-you-need/">Attention is all you need</a>
             
         </section>
 
