@@ -1,5 +1,5 @@
 
-# 👩‍💻 Xiaolu Wei （魏小璐）
+# 👩‍💻 Xiaolu Wei
 
 🎓 Master's student at [Intelligent Media Analysis Group (IMAG)](https://imag-njust.net/)  
 🏫 School of Computer Science, Nanjing University of Science and Technology  
