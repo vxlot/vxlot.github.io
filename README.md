@@ -8,3 +8,20 @@
 
 
 > *"Keep exploring, keep creating."* 🌟
+
+
+## 📝 Publications
+
+- **Aligning Text-to-Image Diffusion Models to Human Preference by Classification**  
+  *NeurIPS 2025* · Co-author (2nd)
+
+- **Conducting Conditional Diffusion by Estimating the Mean Vector of von Mises-Fisher Distribution**  
+  *ACM MM 2025* · Co-author (3rd)
+
+
+## 💼 Experience
+
+**Research Intern** · vivo Blueprint Lab *(Blueprints AI Research)*  
+*Feb 2026 – Present*  
+Focused on portrait relighting.
+
